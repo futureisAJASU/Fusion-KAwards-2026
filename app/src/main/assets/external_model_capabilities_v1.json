@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "providerType": "OPENAI",
+      "modelIds": ["gpt-5.6-sol"],
+      "aliases": ["gpt-5.6"],
+      "verifiedAt": "2026-09-19",
+      "request": {"outputTokenField": "MAX_COMPLETION_TOKENS"},
+      "variants": [
+        {"id": "builtin:none", "label": "없음", "effort": "none"},
+        {"id": "builtin:low", "label": "낮음", "effort": "low"},
+        {"id": "builtin:medium", "label": "중간", "effort": "medium"},
+        {"id": "builtin:high", "label": "높음", "effort": "high"},
+        {"id": "builtin:xhigh", "label": "매우 높음", "effort": "xhigh"},
+        {"id": "builtin:max", "label": "최대", "effort": "max"}
+      ]
+    },
+    {
+      "providerType": "OPENAI",
+      "modelIds": ["gpt-5.6-terra", "gpt-5.6-luna"],
+      "aliases": [],
+      "verifiedAt": "2026-09-19",
+      "request": {"outputTokenField": "MAX_COMPLETION_TOKENS"},
+      "variants": [
+        {"id": "builtin:none", "label": "없음", "effort": "none"},
+        {"id": "builtin:low", "label": "낮음", "effort": "low"},
+        {"id": "builtin:medium", "label": "중간", "effort": "medium"},
+        {"id": "builtin:high", "label": "높음", "effort": "high"},
+        {"id": "builtin:xhigh", "label": "매우 높음", "effort": "xhigh"},
+        {"id": "builtin:max", "label": "최대", "effort": "max"}
+      ]
+    },
+    {
+      "providerType": "NVIDIA_NIM",
+      "modelIds": ["openai/gpt-oss-20b", "openai/gpt-oss-120b"],
+      "aliases": [],
+      "verifiedAt": "2026-09-19",
+      "providerNote": "서버 배포 설정에 따라 지원 여부가 달라질 수 있습니다.",
+      "variants": [
+        {"id": "builtin:low", "label": "낮음", "effort": "low"},
+        {"id": "builtin:medium", "label": "중간", "effort": "medium"},
+        {"id": "builtin:high", "label": "높음", "effort": "high"}
+      ]
+    }
+  ]
+}

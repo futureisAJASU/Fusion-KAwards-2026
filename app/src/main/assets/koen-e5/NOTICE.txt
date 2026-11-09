@@ -1,0 +1,19 @@
+Ko/En semantic retrieval backbone (S1, optional, Apache-2.0)
+
+Model: exp-models/dragonkue-KoEn-E5-Tiny
+  https://huggingface.co/exp-models/dragonkue-KoEn-E5-Tiny
+  pinned commit: 292c09c78c71a3f00ed56ee0d1ed9f0d39182fc9
+ONNX mirror: exp-models/dragonkue-KoEn-E5-Tiny-ONNX
+  https://huggingface.co/exp-models/dragonkue-KoEn-E5-Tiny-ONNX
+  pinned commit: 5cf599a8cd6577f2f12a026130ad50132e472cfd
+Base: intfloat/multilingual-e5-small via dragonkue/multilingual-e5-small-ko
+License: Apache License 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
+Attribution: dragonkue / exp-models contributors (KoEn-E5-Tiny),
+  base intfloat/multilingual-e5-small; Apache-2.0
+Assets (NOT bundled; provision explicitly, never auto-downloaded):
+  model_qint8_arm64.onnx (preferred) or model.onnx, tokenizer.json
+  See docs/semantic-retrieval-koen-e5.md for hashes and contract.
+Runtime: ONNX Runtime Android (MIT, Microsoft) - encoder only, CPU, offline.
+
+This model is candidate-retrieval assistance only. It never decides Evidence
+verdicts. Similarity scores are ranking signals, not factual confidence.

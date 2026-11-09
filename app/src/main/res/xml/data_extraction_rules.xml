@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+    Fusion data-extraction rules (API 31+).
+
+    Privacy contract:
+      - automatic cloud backup: DISABLED
+      - automatic D2D migration of app-private Fusion state: DISABLED
+
+    android:allowBackup="false" remains the primary manifest gate for cloud
+    backup. These explicit exclusions are defense in depth under both
+    <cloud-backup> and <device-transfer>: an empty rule section would be a
+    no-op (Android auto backup includes almost everything by default; only
+    <include> switches the model), and allowBackup=false can be ignored for
+    D2D migration on Android 12+ / some OEM devices. Every normal and
+    device-protected domain is excluded explicitly so exclusion never relies
+    on a comment.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="root" path="." />
+        <exclude domain="file" path="." />
+        <exclude domain="database" path="." />
+        <exclude domain="sharedpref" path="." />
+        <exclude domain="external" path="." />
+        <exclude domain="device_root" path="." />
+        <exclude domain="device_file" path="." />
+        <exclude domain="device_database" path="." />
+        <exclude domain="device_sharedpref" path="." />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="root" path="." />
+        <exclude domain="file" path="." />
+        <exclude domain="database" path="." />
+        <exclude domain="sharedpref" path="." />
+        <exclude domain="external" path="." />
+        <exclude domain="device_root" path="." />
+        <exclude domain="device_file" path="." />
+        <exclude domain="device_database" path="." />
+        <exclude domain="device_sharedpref" path="." />
+    </device-transfer>
+</data-extraction-rules>

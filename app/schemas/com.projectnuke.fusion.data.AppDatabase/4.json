@@ -1,0 +1,344 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 4,
+    "identityHash": "47e6563470f924937e8e0efef30f681c",
+    "entities": [
+      {
+        "tableName": "conversations",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, `isPinned` INTEGER NOT NULL, `isArchived` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isPinned",
+            "columnName": "isPinned",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isArchived",
+            "columnName": "isArchived",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "messages",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `conversationId` INTEGER NOT NULL, `role` TEXT NOT NULL, `content` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, FOREIGN KEY(`conversationId`) REFERENCES `conversations`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "conversationId",
+            "columnName": "conversationId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "role",
+            "columnName": "role",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "content",
+            "columnName": "content",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_messages_conversationId",
+            "unique": false,
+            "columnNames": [
+              "conversationId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_messages_conversationId` ON `${TABLE_NAME}` (`conversationId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "conversations",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "conversationId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "benchmark_results",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `createdAt` INTEGER NOT NULL, `modelName` TEXT NOT NULL, `modelPath` TEXT, `accelerator` TEXT NOT NULL, `selectedTextBackend` TEXT, `selectedVisionBackend` TEXT, `samplerBackend` TEXT NOT NULL, `mtpRequested` INTEGER NOT NULL, `mtpStatus` TEXT NOT NULL, `fallbackEventCodes` TEXT, `initializedWithMtp` INTEGER NOT NULL, `nativeTtftSeconds` REAL, `nativePrefillTokensPerSecond` REAL, `nativeDecodeTokensPerSecond` REAL, `nativePrefillTokenCount` INTEGER, `nativeDecodeTokenCount` INTEGER, `nativeInitTimeSeconds` REAL, `maxTokens` INTEGER NOT NULL, `temperature` REAL NOT NULL, `topK` INTEGER NOT NULL, `topP` REAL NOT NULL, `reasoningEnabled` INTEGER NOT NULL, `webSearchEnabled` INTEGER NOT NULL, `promptLabel` TEXT NOT NULL, `promptText` TEXT NOT NULL, `modelLoadingMs` INTEGER, `firstTokenLatencyMs` INTEGER, `totalGenerationMs` INTEGER NOT NULL, `estimatedOutputTokens` INTEGER NOT NULL, `totalTokensPerSecond` REAL NOT NULL, `decodeTokensPerSecond` REAL, `success` INTEGER NOT NULL, `errorMessage` TEXT, `appVersion` TEXT, `deviceModel` TEXT, `androidVersion` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modelName",
+            "columnName": "modelName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modelPath",
+            "columnName": "modelPath",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "accelerator",
+            "columnName": "accelerator",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "selectedTextBackend",
+            "columnName": "selectedTextBackend",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "selectedVisionBackend",
+            "columnName": "selectedVisionBackend",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "samplerBackend",
+            "columnName": "samplerBackend",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mtpRequested",
+            "columnName": "mtpRequested",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mtpStatus",
+            "columnName": "mtpStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fallbackEventCodes",
+            "columnName": "fallbackEventCodes",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "initializedWithMtp",
+            "columnName": "initializedWithMtp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nativeTtftSeconds",
+            "columnName": "nativeTtftSeconds",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "nativePrefillTokensPerSecond",
+            "columnName": "nativePrefillTokensPerSecond",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "nativeDecodeTokensPerSecond",
+            "columnName": "nativeDecodeTokensPerSecond",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "nativePrefillTokenCount",
+            "columnName": "nativePrefillTokenCount",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "nativeDecodeTokenCount",
+            "columnName": "nativeDecodeTokenCount",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "nativeInitTimeSeconds",
+            "columnName": "nativeInitTimeSeconds",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "maxTokens",
+            "columnName": "maxTokens",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "temperature",
+            "columnName": "temperature",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "topK",
+            "columnName": "topK",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "topP",
+            "columnName": "topP",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reasoningEnabled",
+            "columnName": "reasoningEnabled",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "webSearchEnabled",
+            "columnName": "webSearchEnabled",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "promptLabel",
+            "columnName": "promptLabel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "promptText",
+            "columnName": "promptText",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modelLoadingMs",
+            "columnName": "modelLoadingMs",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "firstTokenLatencyMs",
+            "columnName": "firstTokenLatencyMs",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "totalGenerationMs",
+            "columnName": "totalGenerationMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estimatedOutputTokens",
+            "columnName": "estimatedOutputTokens",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalTokensPerSecond",
+            "columnName": "totalTokensPerSecond",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "decodeTokensPerSecond",
+            "columnName": "decodeTokensPerSecond",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "success",
+            "columnName": "success",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "errorMessage",
+            "columnName": "errorMessage",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "appVersion",
+            "columnName": "appVersion",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "deviceModel",
+            "columnName": "deviceModel",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "androidVersion",
+            "columnName": "androidVersion",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '47e6563470f924937e8e0efef30f681c')"
+    ]
+  }
+}

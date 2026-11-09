@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+    Fusion legacy backup rules (pre-API-31 auto backup, when the platform
+    consults android:fullBackupContent).
+
+    Privacy contract:
+      - automatic cloud backup: DISABLED
+      - automatic D2D migration of app-private Fusion state: DISABLED
+
+    android:allowBackup="false" remains the primary manifest gate for cloud
+    backup. These explicit exclusions are defense in depth: an empty rule
+    section would be a no-op (Android auto backup includes almost everything
+    by default; only <include> switches the model), and allowBackup=false can
+    be ignored for D2D migration on Android 12+ / some OEM devices. Every
+    app-private domain is excluded explicitly so exclusion does not rely on a
+    comment.
+-->
+<full-backup-content>
+    <exclude domain="root" path="." />
+    <exclude domain="file" path="." />
+    <exclude domain="database" path="." />
+    <exclude domain="sharedpref" path="." />
+    <exclude domain="external" path="." />
+    <exclude domain="device_root" path="." />
+    <exclude domain="device_file" path="." />
+    <exclude domain="device_database" path="." />
+    <exclude domain="device_sharedpref" path="." />
+</full-backup-content>

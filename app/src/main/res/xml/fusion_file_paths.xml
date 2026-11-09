@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-files-path name="external_attachments" path="attachments/" />
+    <external-files-path name="external_models" path="models/" />
+    <files-path name="internal_attachments" path="attachments/" />
+    <files-path name="internal_models" path="models/" />
+</paths>

@@ -1,0 +1,5 @@
+*.jinja text eol=lf
+
+# S1 pinned KoEn-E5 assets must stay byte-identical (SHA-256 verified).
+app/src/main/assets/koen-e5/model_qint8_arm64.onnx binary
+app/src/main/assets/koen-e5/tokenizer.json binary
