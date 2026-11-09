@@ -16,6 +16,30 @@ Fusion은 Android 기기에서 로컬 LLM을 실행하고, 필요할 때 **로�
 
 ---
 
+# 핵심 차별점
+
+> ## **로컬에서 실행하고, 근거를 추적하고, 외부 전송을 통제하는 Android AI Workspace**
+>
+> Fusion은 단순한 모바일 챗봇이 아닙니다.  
+> **온디바이스 LLM · 로컬 문서 RAG · 웹 검색 · 근거 추적 · 긴 대화 메모리 · 개인정보 전송 제어**를 하나의 Android 애플리케이션 안에서 연결했습니다.
+
+### 로컬 최우선 처리
+가능한 처리는 기기 내부에서 수행하며, 로컬 문서와 private-derived context가 외부 검색 경로로 넘어가는 과정을 별도로 통제합니다.
+
+### Grounded RAG & 검색
+로컬 문서와 웹 검색 결과에 provenance를 유지하고, 근거가 부족할 때는 임의의 답을 만드는 대신 제한적으로 응답하거나 abstention하도록 설계했습니다.
+
+### 롱컨택스트 & 답변 소유권
+긴 대화의 context compaction뿐 아니라 답변 재생성, response version 전환, retry 과정에서 **어떤 대화와 어떤 branch의 상태인지**까지 추적합니다.
+
+### 6,000+ 호스트 테스트 + 실기기 검증
+최종 frozen candidate에서 **6,085개의 JVM/호스트 테스트**를 실행했으며, Android 실기기에서도 로컬 추론, 대화 소유권, response version, RAG, cancellation, provenance 등을 검증했습니다.
+
+**최종 검증 결과**
+
+`Physical P0 blockers: 0 confirmed` · `Physical P1 blockers: 0 confirmed`  
+`PHYSICAL_RELEASE_QUALIFIED_WITH_UTILITY_LIMITATIONS`
+
 ## 왜 만들었나
 
 모바일에서 LLM을 실행하는 것만으로는 실제 AI 서비스가 완성되지 않습니다.
